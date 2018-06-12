@@ -32,32 +32,33 @@ var (
 		"InternalServerError": true,
 	}
 
-	// fcmServerUrl for testing purposes
+	// FCMServerURL for testing purposes
 	FCMServerURL = "https://fcm.googleapis.com/fcm/send"
 )
 
 // FCM  stores client with api key to firebase
 type FCM struct {
 	APIKey     string
-	HttpClient *http.Client
+	HTTPClient *http.Client
 }
 
 // NewFCM creates a new client
 func NewFCM(apiKey string) *FCM {
 	return &FCM{
 		APIKey:     apiKey,
-		HttpClient: &http.Client{},
+		HTTPClient: &http.Client{},
 	}
 }
 
-// NewFCM creates a new client
+// NewFCMWithClient creates a new client
 func NewFCMWithClient(apiKey string, httpClient *http.Client) *FCM {
 	return &FCM{
 		APIKey:     apiKey,
-		HttpClient: httpClient,
+		HTTPClient: httpClient,
 	}
 }
 
+// AuthorizationToken returns the APIKey used by the client
 func (f *FCM) AuthorizationToken() string {
 	return fmt.Sprintf("key=%v", f.APIKey)
 }
@@ -77,7 +78,7 @@ func (f *FCM) Send(message Message) (Response, error) {
 	req.Header.Set("Authorization", f.AuthorizationToken())
 	req.Header.Set("Content-Type", "application/json")
 
-	resp, err := f.HttpClient.Do(req)
+	resp, err := f.HTTPClient.Do(req)
 	if err != nil {
 		return Response{}, err
 	}

@@ -1,5 +1,5 @@
 /*
-Package firebase provides integration with Firebase Cloud Notification HTTP API https://firebase.google.com/docs/cloud-messaging/http-server-ref
+Package fcm provides integration with Firebase Cloud Notification HTTP API https://firebase.google.com/docs/cloud-messaging/http-server-ref
 You can send push notifications to Android and iOS devices via simple API.
 
 Example:

@@ -99,7 +99,7 @@ type (
 		MutableContent bool `json:"mutable_content,omitempty"`
 	}
 
-	// Downstream result from FCM, sent in the "results" field of the Response packet
+	// Result represents the downstream result from FCM, sent in the "results" field of the Response packet
 	Result struct {
 		// String specifying a unique ID for each successfully processed message.
 		MessageID string `json:"message_id"`
@@ -216,7 +216,7 @@ type (
 		// The notification's channel id (new in Android O).
 		// The app must create a channel with this ID before any notification with this key is received.
 		// If you don't send this key in the request, or if the channel id provided has not yet been created by your app, FCM uses the channel id specified in your app manifest.
-		AndroidChannelId string `json:"android_channel_id,omitempty"`
+		AndroidChannelID string `json:"android_channel_id,omitempty"`
 	}
 )
 

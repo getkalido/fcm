@@ -160,6 +160,9 @@ type (
 		// Body indicates notification body text.
 		Body string `json:"body,omitempty"`
 
+		// The notification's subtitle.
+		Subtitle string `json:"subtitle,omitempty"`
+
 		// Sound indicates a sound to play when the device receives a notification.
 		// Sound files can be in the main bundle of the client app or in the
 		// Library/Sounds folder of the app's data container.
@@ -184,9 +187,13 @@ type (
 		// Color indicates color of the icon, expressed in #rrggbb format
 		Color string `json:"color,omitempty"`
 
+		// ANDROID
 		// ClickAction indicates the action associated with a user click on the notification.
 		// When this is set, an activity with a matching intent filter is launched when user
 		// clicks the notification.
+		// iOS
+		// The action associated with a user click on the notification.
+		// Corresponds to category in the APNs payload.
 		ClickAction string `json:"click_action,omitempty"`
 
 		// BodyLockKey indicates the key to the body string for localization. Use the key in
@@ -205,6 +212,11 @@ type (
 		// localization. For more information, see
 		// https://developer.android.com/guide/topics/resources/string-resource.html#FormattingAndStyling
 		TitleLocArgs string `json:"title_loc_args,omitempty"`
+
+		// The notification's channel id (new in Android O).
+		// The app must create a channel with this ID before any notification with this key is received.
+		// If you don't send this key in the request, or if the channel id provided has not yet been created by your app, FCM uses the channel id specified in your app manifest.
+		AndroidChannelId string `json:"android_channel_id,omitempty"`
 	}
 )
 

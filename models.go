@@ -65,6 +65,11 @@ type (
 		// the app by default. On Chrome, currently not supported.
 		ContentAvailable bool `json:"content_available,omitempty"`
 
+		// Same as above
+		// iOS silent fcm push notification not via xmpp examples all talk of a `content-available` field
+		// Adding this to experiment with it
+		ContentAvailableSpecial bool `json:"content-available,omitempty"`
+
 		// DelayWhenIdle When this parameter is set to true, it indicates that
 		// the message should not be sent until the device becomes active.
 		// The default value is false.
@@ -99,7 +104,7 @@ type (
 		MutableContent bool `json:"mutable_content,omitempty"`
 	}
 
-	// Result represents the downstream result from FCM, sent in the "results" field of the Response packet
+	// Downstream result from FCM, sent in the "results" field of the Response packet
 	Result struct {
 		// String specifying a unique ID for each successfully processed message.
 		MessageID string `json:"message_id"`
@@ -122,7 +127,7 @@ type (
 		StatusCode int
 
 		// MulticastID a unique ID (number) identifying the multicast message.
-		MulticastID int `json:"multicast_id"`
+		MulticastID uint64 `json:"multicast_id"`
 
 		// Success number of messages that were processed without an error.
 		Success int `json:"success"`
@@ -162,6 +167,15 @@ type (
 
 		// The notification's subtitle.
 		Subtitle string `json:"subtitle,omitempty"`
+
+		// Image should contains the URL of an image that is going to be downloaded on the device and displayed in a notification.
+		Image string `json:"image,omitempty"`
+
+		// AndroidChannelID The notification's channel id (new in Android O).
+		// The app must create a channel with this channel ID before any notification with this channel ID is received.
+		// If you don't send this channel ID in the request, or if the channel ID provided has
+		// not yet been created by the app, FCM uses the channel ID specified in the app manifest.
+		AndroidChannelID string `json:"android_channel_id,omitempty"`
 
 		// Sound indicates a sound to play when the device receives a notification.
 		// Sound files can be in the main bundle of the client app or in the
@@ -212,11 +226,6 @@ type (
 		// localization. For more information, see
 		// https://developer.android.com/guide/topics/resources/string-resource.html#FormattingAndStyling
 		TitleLocArgs string `json:"title_loc_args,omitempty"`
-
-		// The notification's channel id (new in Android O).
-		// The app must create a channel with this ID before any notification with this key is received.
-		// If you don't send this key in the request, or if the channel id provided has not yet been created by your app, FCM uses the channel id specified in your app manifest.
-		AndroidChannelID string `json:"android_channel_id,omitempty"`
 	}
 )
 

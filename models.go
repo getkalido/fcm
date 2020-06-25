@@ -65,6 +65,11 @@ type (
 		// the app by default. On Chrome, currently not supported.
 		ContentAvailable bool `json:"content_available,omitempty"`
 
+		// Same as above
+		// iOS silent fcm push notification not via xmpp examples all talk of a `content-available` field
+		// Adding this to experiment with it
+		ContentAvailableSpecial bool `json:"content-available,omitempty"`
+
 		// DelayWhenIdle When this parameter is set to true, it indicates that
 		// the message should not be sent until the device becomes active.
 		// The default value is false.
